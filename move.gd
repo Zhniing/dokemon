@@ -12,8 +12,12 @@ func attack(s, t):
 	var power = 90
 
 	# Deal the damage
-	var damage = calc_damage(lv, att, def, power)
+	var damage = int(calc_damage(lv, att, def, power))
 	t.hero.hp -= damage
+
+	# Update the battle log
+	var log = $/root/Arena/BattleLog
+	log.text += s.name + " 对 " + t.name + " 使用了 " + "attack" + " 造成了 " + str(damage) + " 点伤害" + "\n"
 
 	# Update the UI
 	t.get_node("HP").value = t.hero.hp
