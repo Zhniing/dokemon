@@ -162,3 +162,13 @@ offset_bottom = 608.0
 theme_override_font_sizes/font_size = 40
 text = "重开"
 script = ExtResource("4_iim3w")
+
+[node name="Turn" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1175.0
+offset_top = 206.0
+offset_right = 1375.0
+offset_bottom = 306.0
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center]回合 1[/center]"

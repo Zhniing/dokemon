@@ -2,6 +2,7 @@ extends Control
 
 
 var commands = {}
+var turn = 1
 
 
 func _ready():
@@ -38,8 +39,16 @@ func _process(delta):
 			return get_node(a).hero.stats[5] > get_node(b).hero.stats[5]
 		)
 
+		# Write the number of turns to the battle log
+		$/root/Arena/BattleLog.text += "回合 " + str(turn) + "\n"
+
 		# Execute the commands
 		for i in order:
 			commands[i].call()
 
 		commands.clear()
+
+		# Update the number of turns
+		if $Player1.hero.hp > 0 && $Player2.hero.hp > 0:
+			turn += 1
+			$/root/Arena/Turn.text = "[center]回合 " + str(turn) + "[/center]"

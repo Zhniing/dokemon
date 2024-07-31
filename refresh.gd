@@ -15,6 +15,10 @@ func _ready():
 		# Clear the battle log
 		$/root/Arena/BattleLog.text = ""
 
+		# Reset the number of turns
+		$/root/Arena.turn = 1
+		$/root/Arena/Turn.text = "[center]回合 1[/center]"
+
 		# Reset the HP
 		P1.hero.hp = P1.hero.stats[0]
 		P1.get_node("HP").value = P1.hero.hp
