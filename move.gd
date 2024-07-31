@@ -6,6 +6,10 @@ func calc_damage(lv, att, def, power):
 
 
 func attack(s, t):
+	# Survival check
+	if s.hero.hp <= 0 || t.hero.hp <= 0:
+		return
+
 	var lv = s.hero.lv
 	var att = s.hero.stats[3]
 	var def = t.hero.stats[4]
@@ -18,6 +22,8 @@ func attack(s, t):
 	# Update the battle log
 	var log = $/root/Arena/BattleLog
 	log.text += s.name + " 对 " + t.name + " 使用了 " + "attack" + " 造成了 " + str(damage) + " 点伤害" + "\n"
+	if t.hero.hp <= 0:
+		log.text += t.name + " 倒下了" + "\n"
 
 	# Update the UI
 	t.get_node("HP").value = t.hero.hp
