@@ -1,9 +1,13 @@
 extends Control
 
 
-var base = [85, 60, 65, 130, 75, 98]
-var hero = Hero.new(50, base)
+var alive_num = 1
 
-func _ready():
-	if name == "Player2":
-		hero.stats[5] += 1  # TEST
+
+func _process(delta):
+	# Update the alive_num
+	var cnt = 0
+	for i in get_children():
+		if i.get_node("HP").hp > 0:
+			cnt += 1
+	alive_num = cnt

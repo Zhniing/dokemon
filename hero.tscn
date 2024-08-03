@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtwsqc7gsa8b7"]
+
+[ext_resource type="Script" path="res://hero.gd" id="1_htff8"]
+[ext_resource type="Script" path="res://hp.gd" id="2_odmvo"]
+[ext_resource type="Script" path="res://stats.gd" id="3_ftcwb"]
+[ext_resource type="Script" path="res://spreads.gd" id="4_st6n2"]
+[ext_resource type="Script" path="res://move.gd" id="5_yjvf2"]
+
+[node name="Hero" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_htff8")
+
+[node name="Stats" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_ftcwb")
+
+[node name="Spread" type="Control" parent="Stats"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_st6n2")
+
+[node name="HP" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 80.0
+offset_right = 639.0
+offset_bottom = 180.0
+tooltip_text = "123123"
+theme_override_font_sizes/font_size = 50
+script = ExtResource("2_odmvo")
+
+[node name="MoveBtns" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 56.0
+offset_top = 137.0
+offset_right = 96.0
+offset_bottom = 177.0
+
+[node name="Move1" type="Button" parent="MoveBtns"]
+custom_minimum_size = Vector2(70, 30)
+layout_mode = 0
+offset_left = -164.0
+offset_top = 200.0
+offset_right = 36.0
+offset_bottom = 300.0
+theme_override_font_sizes/font_size = 40
+text = "技能1"
+script = ExtResource("5_yjvf2")
+
+[node name="Move2" type="Button" parent="MoveBtns"]
+custom_minimum_size = Vector2(70, 30)
+layout_mode = 0
+offset_left = 89.0
+offset_top = 200.0
+offset_right = 289.0
+offset_bottom = 300.0
+theme_override_font_sizes/font_size = 40
+text = "技能2"
+script = ExtResource("5_yjvf2")
+
+[node name="Move3" type="Button" parent="MoveBtns"]
+custom_minimum_size = Vector2(70, 30)
+layout_mode = 0
+offset_left = 340.0
+offset_top = 200.0
+offset_right = 540.0
+offset_bottom = 300.0
+theme_override_font_sizes/font_size = 40
+text = "技能3"
+script = ExtResource("5_yjvf2")
+
+[node name="Move4" type="Button" parent="MoveBtns"]
+custom_minimum_size = Vector2(70, 30)
+layout_mode = 0
+offset_left = 595.0
+offset_top = 200.0
+offset_right = 795.0
+offset_bottom = 300.0
+theme_override_font_sizes/font_size = 40
+text = "技能4"
+script = ExtResource("5_yjvf2")

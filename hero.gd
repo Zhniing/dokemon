@@ -1,24 +1,23 @@
-extends Node
-
-
 class_name Hero
+extends Control
 
 
-var lv
-var stats = []
-var hp  # Current HP
+var lv = 50
+@export var target: Hero
 
 
-func _init(_lv = 50, base = [1, 1, 1, 1, 1, 1]):
-	# STAT
-	lv = _lv
-	var iv = [31, 31, 31, 31, 31, 31]
-	var ev = [252, 0, 0, 0, 0, 0]
-	for i in base.size():
-		stats.append(calc_stat(lv, base[i], iv[i], ev[i]))
-	stats[0] += 5 + lv  # Maximum HP
-	hp = stats[0]
+func _process(delta):
+	if $HP.hp <= 0:
+		get_parent().alive_num -= 1
 
 
-func calc_stat(lv, base, iv, ev):
-	return (base * 2 + iv + ev / 4) * lv / 100 + 5
+func damage(x):
+	$HP.damage(x)
+
+
+func revive():
+	$HP.heal(get_stat(0))
+
+
+func get_stat(i):
+	return $Stats.stats[i]

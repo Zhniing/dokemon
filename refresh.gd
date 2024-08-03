@@ -13,20 +13,19 @@ func _ready():
 		visible = false
 
 		# Clear the battle log
-		$/root/Arena/BattleLog.text = ""
+		$"/root/Arena/BattleLog".clear()
 
 		# Reset the number of turns
 		$/root/Arena.turn = 1
 		$/root/Arena/Turn.text = "[center]回合 1[/center]"
 
 		# Reset the HP
-		P1.hero.hp = P1.hero.stats[0]
-		P1.get_node("HP").value = P1.hero.hp
-		P2.hero.hp = P2.hero.stats[0]
-		P2.get_node("HP").value = P2.hero.hp
+		P1.get_node("Hero").revive()
+		P2.get_node("Hero").revive()
+
 	)
 
 func _process(delta):
 	# Display this button
-	if not visible && (P1.hero.hp <= 0 || P2.hero.hp <= 0):
+	if not visible && (P1.alive_num <= 0 || P2.alive_num <= 0):
 		visible = true

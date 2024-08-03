@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://arena.gd" id="1_bvhoi"]
 [ext_resource type="Script" path="res://player.gd" id="2_0dt3r"]
-[ext_resource type="Script" path="res://move.gd" id="2_adtn4"]
+[ext_resource type="PackedScene" uid="uid://dtwsqc7gsa8b7" path="res://hero.tscn" id="3_ukurl"]
 [ext_resource type="Script" path="res://refresh.gd" id="4_iim3w"]
 
 [node name="Arena" type="Control"]
@@ -22,126 +22,20 @@ offset_right = 358.0
 offset_bottom = 470.0
 script = ExtResource("2_0dt3r")
 
-[node name="HP" type="ProgressBar" parent="Player1"]
-layout_mode = 0
-offset_left = 89.0
-offset_top = 80.0
-offset_right = 639.0
-offset_bottom = 180.0
-theme_override_font_sizes/font_size = 50
-
-[node name="MoveBtns" type="Control" parent="Player1"]
-anchors_preset = 0
-offset_left = 56.0
-offset_top = 137.0
-offset_right = 96.0
-offset_bottom = 177.0
-script = ExtResource("2_adtn4")
-
-[node name="Move1" type="Button" parent="Player1/MoveBtns"]
-custom_minimum_size = Vector2(70, 30)
-layout_mode = 0
-offset_left = -164.0
-offset_top = 200.0
-offset_right = 36.0
-offset_bottom = 300.0
-theme_override_font_sizes/font_size = 40
-text = "技能1"
-
-[node name="Move2" type="Button" parent="Player1/MoveBtns"]
-custom_minimum_size = Vector2(70, 30)
-layout_mode = 0
-offset_left = 89.0
-offset_top = 200.0
-offset_right = 289.0
-offset_bottom = 300.0
-theme_override_font_sizes/font_size = 40
-text = "技能2"
-
-[node name="Move3" type="Button" parent="Player1/MoveBtns"]
-custom_minimum_size = Vector2(70, 30)
-layout_mode = 0
-offset_left = 340.0
-offset_top = 200.0
-offset_right = 540.0
-offset_bottom = 300.0
-theme_override_font_sizes/font_size = 40
-text = "技能3"
-
-[node name="Move4" type="Button" parent="Player1/MoveBtns"]
-custom_minimum_size = Vector2(70, 30)
-layout_mode = 0
-offset_left = 595.0
-offset_top = 200.0
-offset_right = 795.0
-offset_bottom = 300.0
-theme_override_font_sizes/font_size = 40
-text = "技能4"
+[node name="Hero" parent="Player1" node_paths=PackedStringArray("target") instance=ExtResource("3_ukurl")]
+target = NodePath("../../Player2/Hero")
 
 [node name="Player2" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1493.0
-offset_top = 430.0
-offset_right = 1533.0
-offset_bottom = 470.0
+offset_left = 1506.0
+offset_top = 425.0
+offset_right = 1546.0
+offset_bottom = 465.0
 script = ExtResource("2_0dt3r")
 
-[node name="HP" type="ProgressBar" parent="Player2"]
-layout_mode = 0
-offset_left = 89.0
-offset_top = 80.0
-offset_right = 639.0
-offset_bottom = 180.0
-theme_override_font_sizes/font_size = 50
-
-[node name="MoveBtns" type="Control" parent="Player2"]
-anchors_preset = 0
-offset_left = 56.0
-offset_top = 137.0
-offset_right = 96.0
-offset_bottom = 177.0
-script = ExtResource("2_adtn4")
-
-[node name="Move1" type="Button" parent="Player2/MoveBtns"]
-custom_minimum_size = Vector2(70, 30)
-layout_mode = 0
-offset_left = -164.0
-offset_top = 200.0
-offset_right = 36.0
-offset_bottom = 300.0
-theme_override_font_sizes/font_size = 40
-text = "技能1"
-
-[node name="Move2" type="Button" parent="Player2/MoveBtns"]
-custom_minimum_size = Vector2(70, 30)
-layout_mode = 0
-offset_left = 89.0
-offset_top = 200.0
-offset_right = 289.0
-offset_bottom = 300.0
-theme_override_font_sizes/font_size = 40
-text = "技能2"
-
-[node name="Move3" type="Button" parent="Player2/MoveBtns"]
-custom_minimum_size = Vector2(70, 30)
-layout_mode = 0
-offset_left = 340.0
-offset_top = 200.0
-offset_right = 540.0
-offset_bottom = 300.0
-theme_override_font_sizes/font_size = 40
-text = "技能3"
-
-[node name="Move4" type="Button" parent="Player2/MoveBtns"]
-custom_minimum_size = Vector2(70, 30)
-layout_mode = 0
-offset_left = 595.0
-offset_top = 200.0
-offset_right = 795.0
-offset_bottom = 300.0
-theme_override_font_sizes/font_size = 40
-text = "技能4"
+[node name="Hero" parent="Player2" node_paths=PackedStringArray("target") instance=ExtResource("3_ukurl")]
+target = NodePath("../../Player1/Hero")
 
 [node name="BattleLog" type="TextEdit" parent="."]
 layout_mode = 0

@@ -6,49 +6,44 @@ var turn = 1
 
 
 func _ready():
-	var P1 = $Player1
-	var P2 = $Player2
-
-	# Inital HP bar
-	var hp = $Player1/HP
-	hp.max_value = $Player1.hero.stats[0]
-	hp.value = hp.max_value
 	# Bind move buttons
-	var btns = $Player1/MoveBtns
+	var btns = $Player1/Hero/MoveBtns
 	for btn in btns.get_children():
 		btn.connect("pressed", func():
-			commands[P1.name] = Callable(btns, "attack").bind(P1, P2)
+			commands[$Player1/Hero] = Callable(btn, btn.move_name)
 		)
-
-	# Inital HP bar
-	hp = $Player2/HP
-	hp.max_value = $Player2.hero.stats[0]
-	hp.value = hp.max_value
-	# Bind move buttons
-	btns = $Player2/MoveBtns
+	btns = $Player2/Hero/MoveBtns
 	for btn in btns.get_children():
 		btn.connect("pressed", func():
-			commands[P2.name] = Callable(btns, "attack").bind(P2, P1)
+			commands[$Player2/Hero] = Callable(btn, btn.move_name)
 		)
+
+
+func execute_commands():
+	if $Player1.alive_num <= 0 || $Player2.alive_num <= 0:
+		return
+
+	# Sort by the speed
+	var order = commands.keys()
+	order.sort_custom(func(a, b):
+		return a.get_stat(5) > b.get_stat(5)
+	)
+
+	# Write the number of turns to the battle log
+	if $Player1/Hero/HP.hp > 0 && $Player2/Hero/HP.hp > 0:
+		$/root/Arena/BattleLog.text += "回合 " + str(turn) + "\n"
+
+	# Execute the commands sequentially
+	for i in order:
+		commands[i].call()
+
+	# Update the number of turns
+	turn += 1
+	$/root/Arena/Turn.text = "[center]回合 " + str(turn) + "[/center]"
+
+	commands.clear()
+
 
 func _process(delta):
 	if commands.size() == 2:
-		# Sort by the speed
-		var order = commands.keys()
-		order.sort_custom(func(a, b):
-			return get_node(a).hero.stats[5] > get_node(b).hero.stats[5]
-		)
-
-		# Write the number of turns to the battle log
-		$/root/Arena/BattleLog.text += "回合 " + str(turn) + "\n"
-
-		# Execute the commands
-		for i in order:
-			commands[i].call()
-
-		commands.clear()
-
-		# Update the number of turns
-		if $Player1.hero.hp > 0 && $Player2.hero.hp > 0:
-			turn += 1
-			$/root/Arena/Turn.text = "[center]回合 " + str(turn) + "[/center]"
+		execute_commands()
